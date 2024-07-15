@@ -26,10 +26,10 @@ fn main() {
 
     
     // Shadowing 
-    let x = 5;
+    let x = 5;    // Original value
     println!("Value of x {}",x);   // OP: 5
 
-    let x = 'r';
+    let x = 'r';    // Shadowed value
     println!("Value of x {}",x);   // OP: r  (char)
 
     /* 
@@ -39,5 +39,8 @@ fn main() {
 
     while, "mut" keyword allows us only to change the value not the data type. 
     */
+
+    const PI: f32 = 3.14159265359;
+    // println!("Value of x {}",PI);
     
 }
