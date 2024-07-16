@@ -1,7 +1,7 @@
 /*
 
 cargo init       // for initialising a rust project ( just like npx create-vite/next )
-cargo check      // to check for pre-compiling errors
+cargo check      // to check for pre-compiling errors ( errors before compilation )
 cargo build      // to compile the rust program
 cargo run        // to compile and run the rust program
 
@@ -42,5 +42,60 @@ fn main() {
 
     const PI: f32 = 3.14159265359;
     // println!("Value of x {}",PI);
+
+    // CHARS
+    for char in "Hello".chars() {
+        // println!("{}",char);
+    }
+// Compund Data Tyoes:
+    // TUPLES   Collection of dynamic data types
+    let tuple: (i32, f64, char) = (500, 6.4, 'X');
     
+    let five_hundred = tuple.0;
+    let six_point_four = tuple.1;
+    let x = tuple.2;
+    println!("Value of Five Hundred is : {}",five_hundred);
+    println!("Value of Six Point Four is : {}",six_point_four);
+    println!("Value of x is : {}",x);
+
+    // ARRAYS   Collection of same data types
+    let arr: [i32; 5] = [1, 2, 3, 4, 5];
+
+    let first = arr[0];
+    let second = arr[1];
+
+    println!("first : {}, second : {}",first,second);
+
+    for element in arr.iter() {
+        // println!("element : {}",element);
+    }
+
+// Custom Data Types
+    // STRUCTS
+    let person = Person {
+        name: String::from("John"),
+        age: 20,
+    };
+
+    println!("The person's name is {}, his age is : {}",person.name,person.age);
+
+    // ENUMS
+    let light = TrafficLight::Red;
+
+    match light {
+        TrafficLight::Red => println!("Stop!"),
+        TrafficLight::Yellow => println!("Slow down!"),
+        TrafficLight::Green => println!("Go!"),
+    };
+}   
+
+struct Person {
+    name: String,
+    age: u8,
 }
+
+enum TrafficLight {
+        Red,
+        Yellow,
+        Green,
+    }
