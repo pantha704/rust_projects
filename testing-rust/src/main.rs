@@ -90,7 +90,7 @@ fn main() {
 
     let x = sum_diff(2,4);
     print!("Sum: {}, Difference: {},\t",x.0,x.1);
-    println!("As a raw Tuple : {:?}",x);
+    println!("As a raw Tuple : {:?}",x);      // {:?}  is used to print a tuple or {:#?} for pretty print.
 }   
 
 struct Person {
