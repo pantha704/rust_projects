@@ -87,6 +87,10 @@ fn main() {
         TrafficLight::Yellow => println!("Slow down!"),
         TrafficLight::Green => println!("Go!"),
     };
+
+    let x = sum_diff(2,4);
+    print!("Sum: {}, Difference: {},\t",x.0,x.1);
+    println!("As a raw Tuple : {:?}",x);
 }   
 
 struct Person {
@@ -99,3 +103,7 @@ enum TrafficLight {
         Yellow,
         Green,
     }
+
+fn sum_diff(n1: i32, n2: i32) -> (i32, i32) {
+    (n1+n2, n1-n2)
+}
