@@ -140,9 +140,14 @@ fn main() {
 
     // 'loop' runs an infinite loop until the 'break' keyword is called from inside it.
     loop { 
-        print!("Yo!  ");
+        println!("Yo!  ");
         break;
     }
+
+    for num in (1..4).rev() {    // 1 to 3 ( 4 excluded ) and .rev() to reverse it into 3 to 1.
+        println!("{}!", num);
+    }
+
 }   
 
 
