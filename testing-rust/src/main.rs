@@ -72,6 +72,11 @@ fn main() {
 
 // Custom Data Types
     // STRUCTS
+   struct Person {
+      name: String,
+      age: u8,
+    }
+
     let person = Person {
         name: String::from("John"),
         age: 20,
@@ -79,7 +84,13 @@ fn main() {
 
     println!("The person's name is {}, his age is : {}",person.name,person.age);
 
-    // ENUMS
+    // ENUMS 
+    enum TrafficLight {
+        Red,
+        Yellow,
+        Green,
+    }
+
     let light = TrafficLight::Red;
 
     match light {
@@ -89,21 +100,52 @@ fn main() {
     };
 
     let x = sum_diff(2,4);
+    fn sum_diff(n1: i32, n2: i32) -> (i32, i32) {
+      (n1+n2, n1-n2)
+    }
     print!("Sum: {}, Difference: {},\t",x.0,x.1);
     println!("As a raw Tuple : {:?}",x);      // {:?}  is used to print a tuple or {:#?} for pretty print.
-}   
 
-struct Person {
-    name: String,
-    age: u8,
-}
 
-enum TrafficLight {
-        Red,
-        Yellow,
-        Green,
+    // Control Flow in Rust
+
+    let num = if 2 > 1 {
+        true
+    } else {
+        false
+    };
+
+    println!("Output : {}",num);   // OP : true
+
+
+    enum Coin {
+        Penny,
+        Nickel,
+        Dime,
+        Quarter,
     }
 
-fn sum_diff(n1: i32, n2: i32) -> (i32, i32) {
-    (n1+n2, n1-n2)
-}
+    fn value_of_cent(coin : Coin) -> u8 {
+        match coin {
+            Coin::Penny => 1,
+            Coin::Nickel => 5,
+            Coin::Dime => 10,
+            Coin::Quarter => 25,
+        }
+    }
+
+    let coin = Coin::Penny;
+
+    println!("Value of coin : {}",value_of_cent(coin));
+
+    // 'loop' runs an infinite loop until the 'break' keyword is called from inside it.
+    loop { 
+        print!("Yo!  ");
+        break;
+    }
+}   
+
+
+
+
+
