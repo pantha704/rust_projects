@@ -145,7 +145,7 @@ fn main() {
     }
 
     for num in (1..4).rev() {    // 1 to 3 ( 4 excluded ) and .rev() to reverse it into 3 to 1.
-        println!("{}!", num);
+        println!("{}!", num);  // OP : 3! 2! 1!
     }
 
 }   
