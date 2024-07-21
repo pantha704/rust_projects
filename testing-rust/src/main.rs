@@ -41,7 +41,7 @@ fn main() {
     */
 
     const PI: f32 = 3.14159265359;
-    // println!("Value of x {}",PI);
+    println!("Value of PI {}",PI);
 
     // CHARS
     for char in "Hello".chars() {
@@ -144,6 +144,11 @@ fn main() {
         break;
     }
 
+    let arr = [1,2,3,4];
+    for element in arr.iter() {
+        println!("Element : {}",element);
+    }
+    
     for num in (1..4).rev() {    // 1 to 3 ( 4 excluded ) and .rev() to reverse it into 3 to 1.
         println!("{}!", num);  // OP : 3! 2! 1!
     }
