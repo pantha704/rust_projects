@@ -161,9 +161,7 @@ fn main() {
         } else if num % 5 == 0 {
             println!("Buzz");
         } else {
-            println!("{}",number);
-        }
-
+            println!("{}", num);
         }
     }
 
