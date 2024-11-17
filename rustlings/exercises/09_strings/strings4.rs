@@ -13,6 +13,7 @@ fn string(arg: String) {
 // Your task is to replace `placeholder(…)` with either `string_slice(…)`
 // or `string(…)` depending on what you think each value is.
 fn main() {
+    placeholder();
     string_slice("blue");
 
     string("red".to_string());

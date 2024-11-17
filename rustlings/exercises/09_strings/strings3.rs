@@ -15,6 +15,9 @@ fn replace_me(input: &str) -> String {
 
 fn main() {
     // You can optionally experiment here.
+    println!("{}", trim_me("Hello!     "));
+    println!("{}", compose_me("Hello"));
+    println!("{}", replace_me("I think cars are cool"));
 }
 
 #[cfg(test)]
