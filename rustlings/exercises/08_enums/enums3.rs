@@ -46,7 +46,9 @@ impl State {
         self.quit = true;
     }
 
-    // &dyn Any allows the function to return a reference to any type, enabling dynamic type handling.
+    // '&dyn Any' allows the function to return a reference to any type, enabling dynamic type handling.
+    // Example: let value: &dyn Any = &42;
+    // '&mut self' means the method can modify the instance of the struct it is called on.
     fn process(&mut self, message: Message) {
         // TODO: Create a match expression to process the different message
         // variants using the methods defined above.

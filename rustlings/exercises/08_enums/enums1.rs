@@ -9,9 +9,9 @@ enum Message {
 }
 
 fn main() {
-    println!("{:?}", Message::Resize);
-    println!("{:?}", Message::Move);
-    println!("{:?}", Message::Echo);
-    println!("{:?}", Message::ChangeColor);
-    println!("{:?}", Message::Quit);
+    println!("{:?}", Message::Resize); // prints Resize
+    println!("{:?}", Message::Move); // prints Move
+    println!("{:?}", Message::Echo); // prints Echo
+    println!("{:?}", Message::ChangeColor); // prints ChangeColor
+    println!("{:?}", Message::Quit); // prints Quit
 }
