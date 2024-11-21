@@ -1,3 +1,4 @@
+use core::error;
 use std::any::{self, Any};
 
 struct Point {
@@ -69,8 +70,10 @@ impl State {
             Message::Echo(s) => self.echo(s),
             Message::ChangeColor(r, g, b) => self.change_color(r, g, b),
             Message::Quit => self.quit(),
+            // '_' is a catch-all pattern that matches any value that doesn't match the previous patterns.
+            _ => panic!("No matching message found"),
         }
-        
+
     }
 }
 
