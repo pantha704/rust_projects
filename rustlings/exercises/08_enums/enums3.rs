@@ -48,10 +48,21 @@ impl State {
 
     // '&dyn Any' allows the function to return a reference to any type, enabling dynamic type handling.
     // Example: let value: &dyn Any = &42;
+
     // '&mut self' means the method can modify the instance of the struct it is called on.
     fn process(&mut self, message: Message) {
         // TODO: Create a match expression to process the different message
         // variants using the methods defined above.
+
+        // The match expression works similarly to a switch statement in other languages.
+        // It allows you to compare a value against a series of patterns and execute code based on which pattern matches.
+        // Example: 
+        // match value {
+        //     Pattern1 => { /* code to execute if value matches Pattern1 */ },
+        //     Pattern2 => { /* code to execute if value matches Pattern2 */ },
+        //     _ => { /* code to execute if value doesn't match any pattern */ },
+        // }
+        // In this case, we match the message to the corresponding method.
         match message {
             Message::Resize { width, height } => self.resize(width, height),
             Message::Move(point) => self.move_position(point),
@@ -59,6 +70,7 @@ impl State {
             Message::ChangeColor(r, g, b) => self.change_color(r, g, b),
             Message::Quit => self.quit(),
         }
+        
     }
 }
 
