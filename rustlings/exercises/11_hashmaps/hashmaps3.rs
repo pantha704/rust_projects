@@ -9,7 +9,7 @@
 use std::collections::HashMap;
 
 // A structure to store the goal details of a team.
-#[derive(Default)]
+#[derive(Default, Debug)]
 struct TeamScores {
     goals_scored: u8,
     goals_conceded: u8,
@@ -24,14 +24,24 @@ fn build_scores_table(results: &str) -> HashMap<&str, TeamScores> {
         // NOTE: We use `unwrap` because we didn't deal with error handling yet.
         let team_1_name = split_iterator.next().unwrap();
         let team_2_name = split_iterator.next().unwrap();
-        let team_1_score: u8 = split_iterator.next().unwrap().parse().unwrap();
-        let team_2_score: u8 = split_iterator.next().unwrap().parse().unwrap();
+        let team_1_goals: u8 = split_iterator.next().unwrap().parse().unwrap();
+        let team_2_goals: u8 = split_iterator.next().unwrap().parse().unwrap();
 
         // TODO: Populate the scores table with the extracted details.
         // Keep in mind that goals scored by team 1 will be the number of goals
         // conceded by team 2. Similarly, goals scored by team 2 will be the
         // number of goals conceded by team 1.
-        
+        let team_1_score = TeamScores {
+            goals_scored: team_1_goals,
+            goals_conceded: team_2_goals,
+        };
+        let team_2_score = TeamScores {
+            goals_scored: team_2_goals,
+            goals_conceded: team_1_goals,
+        };
+
+        scores.insert(team_1_name, team_1_score);
+        scores.insert(team_2_name, team_2_score);
     }
 
     scores
@@ -39,6 +49,15 @@ fn build_scores_table(results: &str) -> HashMap<&str, TeamScores> {
 
 fn main() {
     // You can optionally experiment here.
+    let results = "England,France,4,2
+France,Italy,3,1
+Poland,Spain,2,0
+Germany,England,2,1
+England,Spain,1,0";
+    let scores = build_scores_table(results);
+    println!("{:?}", scores);
+    let england_score = scores.get("England").unwrap();
+    println!("England scored {} goals and conceded {} goals", england_score.goals_scored, england_score.goals_conceded);
 }
 
 #[cfg(test)]

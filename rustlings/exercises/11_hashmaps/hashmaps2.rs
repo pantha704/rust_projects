@@ -33,13 +33,7 @@ fn fruit_basket(basket: &mut HashMap<Fruit, u32>) {
         // basket. Note that you are not allowed to put any type of fruit that's
         // already present!
         if !basket.contains_key(&fruit) {
-            use std::io;
-
-            println!("Enter the count for {:?}:", fruit);
-            let mut input = String::new();
-            io::stdin().read_line(&mut input).expect("Failed to read line");
-            let count: u32 = input.trim().parse().expect("Please enter a valid number");
-            basket.insert(fruit.clone(), count);
+            basket.insert(fruit.clone(), 1);
             println!("{:?} added to the basket", &fruit);
         } else {
             println!("{:?} already exists in the basket", &fruit);
