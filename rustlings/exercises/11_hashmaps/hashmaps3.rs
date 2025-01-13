@@ -31,17 +31,25 @@ fn build_scores_table(results: &str) -> HashMap<&str, TeamScores> {
         // Keep in mind that goals scored by team 1 will be the number of goals
         // conceded by team 2. Similarly, goals scored by team 2 will be the
         // number of goals conceded by team 1.
-        let team_1_score = TeamScores {
-            goals_scored: team_1_goals,
-            goals_conceded: team_2_goals,
-        };
-        let team_2_score = TeamScores {
-            goals_scored: team_2_goals,
-            goals_conceded: team_1_goals,
-        };
+        scores.entry(team_1_name)
+            .and_modify(|e: &mut TeamScores| {
+                e.goals_scored += team_1_goals;
+                e.goals_conceded += team_2_goals;
+            })
+            .or_insert(TeamScores {
+                goals_scored: team_1_goals,
+                goals_conceded: team_2_goals,
+            });
 
-        scores.insert(team_1_name, team_1_score);
-        scores.insert(team_2_name, team_2_score);
+        scores.entry(team_2_name)
+            .and_modify(|e: &mut TeamScores| {
+                e.goals_scored += team_2_goals;
+                e.goals_conceded += team_1_goals;
+            })
+            .or_insert(TeamScores {
+                goals_scored: team_2_goals,
+                goals_conceded: team_1_goals,
+            });
     }
 
     scores
@@ -55,7 +63,7 @@ Poland,Spain,2,0
 Germany,England,2,1
 England,Spain,1,0";
     let scores = build_scores_table(results);
-    println!("{:?}", scores);
+    // println!("{:?}", scores);
     let england_score = scores.get("England").unwrap();
     println!("England scored {} goals and conceded {} goals", england_score.goals_scored, england_score.goals_conceded);
 }
