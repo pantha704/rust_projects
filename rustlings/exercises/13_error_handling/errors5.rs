@@ -20,6 +20,7 @@ enum CreationError {
     Zero,
 }
 
+
 // This is required so that `CreationError` can implement `Error`.
 impl fmt::Display for CreationError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
