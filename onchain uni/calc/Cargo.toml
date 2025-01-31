@@ -4,3 +4,5 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+evalexpr = "12.0.2"
+rhai = "1.21.0"
