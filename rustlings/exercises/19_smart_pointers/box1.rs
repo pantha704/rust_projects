@@ -12,18 +12,29 @@
 // TODO: Use a `Box` in the enum definition to make the code compile.
 #[derive(PartialEq, Debug)]
 enum List {
-    Cons(i32, List),
+    Cons(i32, Box<List>),    // Added Box<> as there were the chances of having recursion here.
     Nil,
 }
 
 // TODO: Create an empty cons list.
 fn create_empty_list() -> List {
-    todo!()
-}
+    List::Nil
+}   
 
 // TODO: Create a non-empty cons list.
 fn create_non_empty_list() -> List {
-    todo!()
+    List::Cons(1, Box::new(List::Nil))
+
+    // For a long list
+    // fn build_list(values: &[i32]) -> List {
+    //     if let Some((&first, rest)) = values.split_first() {
+    //         List::Cons(first, Box::new(build_list(rest)))
+    //     } else {
+    //         List::Nil
+    //     }
+    // }
+
+    // build_list(&[1, 2, 3])
 }
 
 fn main() {

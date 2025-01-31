@@ -1,6 +1,10 @@
 DON'T EDIT THIS FILE!
 
+<<<<<<< HEAD
 iterators2
+=======
+as_ref_mut
+>>>>>>> 19141b9abf0f4ceff77306f6fc225c8dad7870c0
 
 intro1
 intro2
@@ -72,4 +76,31 @@ lifetimes3
 tests1
 tests2
 tests3
+<<<<<<< HEAD
 iterators1
+=======
+iterators1
+iterators2
+iterators3
+iterators4
+iterators5
+box1
+rc1
+arc1
+cow1
+threads1
+threads2
+threads3
+macros1
+macros2
+macros3
+macros4
+clippy1
+clippy2
+clippy3
+using_as
+from_into
+from_str
+try_from_into
+as_ref_mut
+>>>>>>> 19141b9abf0f4ceff77306f6fc225c8dad7870c0

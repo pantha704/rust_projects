@@ -24,6 +24,13 @@ fn main() {
     for handle in handles {
         // TODO: Collect the results of all threads into the `results` vector.
         // Use the `JoinHandle` struct which is returned by `thread::spawn`.
+
+        // .collect() is used to turn an iterator into a collection
+        // Here we're just getting a single result from a single thread handle,
+        // not working with an iterator, so we use .join() to wait for and get
+        // the thread result directly
+        let result = handle.join().unwrap();
+        results.push(result);
     }
 
     if results.len() != 10 {
