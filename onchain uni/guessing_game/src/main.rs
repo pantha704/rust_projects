@@ -4,7 +4,7 @@ use std::cmp::Ordering;
 
 fn main() {
     // Generate a random number between 1 and 100
-    let secret_number = rand::thread_rng().gen_range(1..=100);
+    let secret_number = rand::rng().random_range(1..=100);
     println!("Generating a random number between 1 and 100... \nDone!");
 
     loop {
