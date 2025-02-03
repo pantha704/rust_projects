@@ -15,8 +15,9 @@ fn main() -> Result<(), Box<dyn Error>> {
     // Configure command line interface using clap
     let matches = App::new("ToDo CLI")
         .version("1.0")
-        .author("Pratham Jaiswal")
+        .author("Author: Pratham Jaiswal")
         .about("Manage your tasks")
+
         // Add command: -a/--add <TASK>
         .arg(
             Arg::with_name("add")
@@ -26,6 +27,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 .help("Adds a task to your to-do list")
                 .takes_value(true),
         )
+        
         // List command: -l/--list
         .arg(
             Arg::with_name("list")
@@ -34,15 +36,27 @@ fn main() -> Result<(), Box<dyn Error>> {
                 .help("Lists all tasks")
                 .takes_value(false),
         )
-        // Complete command: -c/--complete <ID>
+        
+        // Check command: -c/--check <ID>
         .arg(
-            Arg::with_name("complete")
+            Arg::with_name("check")
                 .short('c')
-                .long("complete")
+                .long("check")
                 .value_name("ID")
-                .help("Marks a task as complete by ID")
+                .help("Marks a task as checked by ID")
                 .takes_value(true),
         )
+
+        // Uncheck command: -u/--uncheck
+        .arg(
+            Arg::with_name("uncheck")
+            .short('u')
+            .long("uncheck")
+            .value_name("ID")
+            .help("Marks a task as unchecked by ID")
+            .takes_value(true),
+        )
+        
         // Delete command: -d/--delete <ID>
         .arg(
             Arg::with_name("delete")
@@ -69,11 +83,11 @@ fn main() -> Result<(), Box<dyn Error>> {
         list_tasks(&tasks);
     }
 
-    // Handle 'complete' command
-    if let Some(id) = matches.value_of("complete") {
+    // Handle 'check' command
+    if let Some(id) = matches.value_of("check") {
         // Convert string input to numeric ID
         let id = id.parse().expect("Invalid task ID");
-        if complete_task(&mut tasks, id) {
+        if check_task(&mut tasks, id) {
             save_tasks(&tasks)?;
             println!("✅ Task {} marked as complete", id);
         } else {
@@ -141,7 +155,7 @@ fn list_tasks(tasks: &Vec<Task>) {
 
 /// Marks task as complete by ID
 /// Why: Allow users to track progress
-fn complete_task(tasks: &mut Vec<Task>, id: u32) -> bool {
+fn check_task(tasks: &mut Vec<Task>, id: u32) -> bool {
     if let Some(task) = tasks.iter_mut().find(|t| t.id == id) {
         task.completed = true;
         true  // Return success status
