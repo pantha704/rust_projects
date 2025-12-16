@@ -6,12 +6,10 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn build(args: &mut impl Iterator<Item = String>) -> Result<Config, &'static str> {
-        args.next(); // Skip the first argument (program name)
-
-        // If the user provides a path, use it. Otherwise default to "."
-        let target_path = match args.next() {
-            Some(arg) => arg,
+    pub fn build(args: &mut Vec<String>) -> Result<Config, &'static str> {
+        // Skip the first argument (program name)
+        let target_path = match args.get(1) {
+            Some(arg) => arg.clone(),
             None => String::from("."),
         };
 
@@ -63,37 +61,29 @@ fn visit_dirs_basic(dir: &Path, prefix: &str) -> std::io::Result<()> {
 
 pub fn visit_dirs(dir: &Path, prefix: &str) -> std::io::Result<()> {
     if dir.is_dir() {
+        // FIX: We convert the DirEntry items into PathBuf items right here
         let entries = fs::read_dir(dir)?
             .map(|res| res.map(|e| e.path()))
             .collect::<Result<Vec<_>, std::io::Error>>()?;
 
-        // We need to know if we are on the LAST item to choose └── vs ├──
         let count = entries.len();
 
         for (index, path) in entries.iter().enumerate() {
-            // Check if this is the last item in the current folder
             let is_last = index == count - 1;
-
-            // Choose the correct connector
             let connector = if is_last { "└── " } else { "├── " };
 
-            // Get the file name
             if let Some(filename) = path.file_name() {
                 if let Some(filename_str) = filename.to_str() {
-                    // Print the current item
                     println!("{}{}{}", prefix, connector, filename_str);
 
-                    // RECURSION: If this item is a directory, dive into it!
                     if path.is_dir() {
-                        // Prepare the prefix for the children
-                        // If we are last, children don't need the vertical bar │
                         let new_prefix = if is_last {
                             format!("{}    ", prefix)
                         } else {
                             format!("{}│   ", prefix)
                         };
 
-                        // Call the function again with the new path and new prefix
+                        // Now this works because 'path' is truly a PathBuf
                         visit_dirs(&path, &new_prefix)?;
                     }
                 }
